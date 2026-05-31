@@ -18,5 +18,14 @@ def report_lost():
         contact=request.form["contact"]
         return f"Lost item recieved : {name}"
     return render_template("report_lost.html")
+@app.route("/report-found",methods=["GET,POST"])
+def report_found():
+    if request.method=="POST":
+        name=request.form["name"]
+        description=request.form["description"]
+        location=request.form["location"]
+        contact=request.form["contact"]
+        return f"Found item recieved : {name}"
+    return render_template("report_found.html")
 if __name__=="__main__":
     app.run(debug=True)
