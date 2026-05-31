@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 import sqlite3
 app=Flask(__name__)
 DATABASE="lost_found.db"
@@ -8,6 +8,6 @@ def get_db_connection():
     return connection
 @app.route("/")
 def home():
-    return "Lost & Found backend running"
+    return render_template("home.html")
 if __name__=="__main__":
     app.run(debug=True)
