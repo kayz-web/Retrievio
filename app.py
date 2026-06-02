@@ -83,5 +83,17 @@ SELECT * FROM items
     items=cursor.fetchall()
     connection.close()
     return render_template("lost_items.html",items=items)
+@app.route("/found-items")
+def found_items():
+    connection=get_db_connection()
+    cursor=connection.cursor()
+    cursor.execute("""
+SELECT * FROM items
+                   WHERE type = ?
+                   AND status=?
+                   ORDER BY id DESC""",("Found","Active"))
+    items=cursor.fetchall()
+    connection.close()
+    return render_template("found_items.html",items=items)
 if __name__=="__main__":
     app.run(debug=True)
