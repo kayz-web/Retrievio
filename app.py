@@ -95,5 +95,17 @@ SELECT * FROM items
     items=cursor.fetchall()
     connection.close()
     return render_template("found_items.html",items=items)
+@app.route("/claim-item/<int:item_id>")
+def claim_item(item_id):
+    connection=get_db_connection()
+    cursor=connection.cursor()
+    cursor.execute("""
+UPDATE items
+                   SET status=?
+                   WHERE id=?"""
+                   ,("Claimed",item_id))
+    connection.commit()
+    connection.close()
+    return f"Item {item_id} claimed succesfully"
 if __name__=="__main__":
     app.run(debug=True)

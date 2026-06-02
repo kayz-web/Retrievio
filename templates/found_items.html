@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Found Items</title>
 </head>
+
 <body>
 
     <h1>Found Items</h1>
@@ -13,31 +15,36 @@
 
     {% if items %}
 
-        {% for item in items %}
+    {% for item in items %}
 
-            <div>
+    <div>
 
-                <h3>{{ item["name"] }}</h3>
+        <h3>{{ item["name"] }}</h3>
 
-                <p>Description: {{ item["description"] }}</p>
+        <p>Description: {{ item["description"] }}</p>
 
-                <p>Location: {{ item["location"] }}</p>
+        <p>Location: {{ item["location"] }}</p>
 
-                <p>Contact: {{ item["contact"] }}</p>
+        <p>Contact: {{ item["contact"] }}</p>
 
-                <p>Date Posted: {{ item["date_posted"] }}</p>
+        <p>Date Posted: {{ item["date_posted"] }}</p>
 
-                <hr>
+        <a href="/claim-item/{{ item['id'] }}">
+            Claim Item
+        </a>
 
-            </div>
+        <hr>
 
-        {% endfor %}
+    </div>
+
+    {% endfor %}
 
     {% else %}
 
-        <p>No found items available.</p>
+    <p>No found items available.</p>
 
     {% endif %}
 
 </body>
+
 </html>

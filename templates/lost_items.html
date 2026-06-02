@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Lost Items</title>
 </head>
+
 <body>
 
     <h1>Lost Items</h1>
@@ -15,29 +17,30 @@
 
     {% for item in items %}
 
-        <div>
+    <div>
 
-            <h3>{{ item["name"] }}</h3>
+        <h3>{{ item["name"] }}</h3>
 
-            <p>Description: {{ item["description"] }}</p>
+        <p>Description: {{ item["description"] }}</p>
 
-            <p>Location: {{ item["location"] }}</p>
+        <p>Location: {{ item["location"] }}</p>
 
-            <p>Contact: {{ item["contact"] }}</p>
+        <p>Contact: {{ item["contact"] }}</p>
 
-            <p>Date Posted: {{ item["date_posted"] }}</p>
+        <p>Date Posted: {{ item["date_posted"] }}</p>
 
-            <hr>
+        <hr>
 
-        </div>
+    </div>
 
     {% endfor %}
 
-{% else %}
+    {% else %}
 
     <p>No lost items found.</p>
 
-{% endif %}
+    {% endif %}
 
 </body>
+
 </html>
