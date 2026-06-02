@@ -71,5 +71,17 @@ def report_found():
         connection.close()
         return f"Found item recieved : {name}"
     return render_template("report_found.html")
+@app.route("/lost-items")
+def lost_items():
+    connection=get_db_connection()
+    cursor=connection.cursor()
+    cursor.execute("""
+SELECT * FROM items
+                   WHERE type = ?
+                   AND status=?
+                   ORDER BY id DESC""",("Lost","Active"))
+    items=cursor.fetchall()
+    connection.close()
+    return render_template("lost_items.html",items=items)
 if __name__=="__main__":
     app.run(debug=True)
