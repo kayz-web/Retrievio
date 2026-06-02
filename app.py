@@ -8,7 +8,19 @@ def get_db_connection():
     return connection
 @app.route("/")
 def home():
-    return render_template("home.html")
+    connection=get_db_connection()
+    cursor=connection.cursor()
+    cursor.execute("""
+SELECT * FROM items
+                   WHERE status =?
+                   ORDER BY id DESC
+                   """,("Active",))
+    items=cursor.fetchall()
+    connection.close()
+    return render_template(
+        "home.html",
+        items=items
+    )
 @app.route("/report-lost",methods=["GET","POST"])
 def report_lost():
     if request.method=="POST":
