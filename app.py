@@ -24,10 +24,21 @@ SELECT * FROM items
 @app.route("/report-lost",methods=["GET","POST"])
 def report_lost():
     if request.method=="POST":
-        name=request.form["name"]
-        description=request.form["description"]
-        location=request.form["location"]
-        contact=request.form["contact"]
+        name=request.form["name"].strip()
+        description=request.form["description"].strip()
+        location=request.form["location"].strip()
+        contact=request.form["contact"].strip()
+        if not name:
+            return "Name is required"
+
+        if not description:
+            return "Description is required"
+
+        if not location:
+            return "Location is required"
+
+        if not contact:
+           return "Contact is required"
         connection = get_db_connection()
         cursor=connection.cursor()
         cursor.execute("""
@@ -49,10 +60,21 @@ def report_lost():
 @app.route("/report-found",methods=["GET","POST"])
 def report_found():
     if request.method=="POST":
-        name=request.form["name"]
-        description=request.form["description"]
-        location=request.form["location"]
-        contact=request.form["contact"]
+        name=request.form["name"].strip()
+        description=request.form["description"].strip()
+        location=request.form["location"].strip()
+        contact=request.form["contact"].strip()
+        if not name:
+            return "Name is required"
+
+        if not description:
+            return "Description is required"
+
+        if not location:
+            return "Location is required"
+
+        if not contact:
+           return "Contact is required"
         connection = get_db_connection()
         cursor=connection.cursor()
         cursor.execute("""
