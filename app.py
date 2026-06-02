@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect
 import sqlite3
 app=Flask(__name__)
 DATABASE="lost_found.db"
@@ -106,6 +106,6 @@ UPDATE items
                    ,("Claimed",item_id))
     connection.commit()
     connection.close()
-    return f"Item {item_id} claimed succesfully"
+    return redirect("/found-items")
 if __name__=="__main__":
     app.run(debug=True)
