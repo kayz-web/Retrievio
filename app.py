@@ -39,6 +39,10 @@ def report_lost():
 
         if not contact:
            return "Contact is required"
+        
+        if len(contact) != 10 or not contact.isdigit():
+           return "Please enter a valid 10-digit contact number."
+        
         connection = get_db_connection()
         cursor=connection.cursor()
         cursor.execute("""
@@ -55,7 +59,7 @@ def report_lost():
         ))
         connection.commit()
         connection.close()
-        return f"Lost item recieved : {name}"
+        return f"Lost item received : {name}"
     return render_template("report_lost.html")
 @app.route("/report-found",methods=["GET","POST"])
 def report_found():
@@ -75,6 +79,10 @@ def report_found():
 
         if not contact:
            return "Contact is required"
+        
+        if len(contact) != 10 or not contact.isdigit():
+           return "Please enter a valid 10-digit contact number."
+        
         connection = get_db_connection()
         cursor=connection.cursor()
         cursor.execute("""
@@ -91,7 +99,7 @@ def report_found():
         ))
         connection.commit()
         connection.close()
-        return f"Found item recieved : {name}"
+        return f"Found item received : {name}"
     return render_template("report_found.html")
 @app.route("/lost-items")
 def lost_items():
