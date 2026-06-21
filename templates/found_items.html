@@ -8,44 +8,49 @@
 
 <body>
 
+<div class="container">
+
     <h1>Found Items</h1>
 
-    <a href="/">Back to Home</a>
+    <div class="navbar">
+        <a href="/">🏠 Home</a>
+        <a href="/report-lost">Report Lost Item</a>
+        <a href="/report-found">Report Found Item</a>
+        <a href="/lost-items">View Lost Items</a>
+    </div>
 
     <hr>
 
     {% if items %}
 
-    {% for item in items %}
+        {% for item in items %}
 
-    <div>
+        <div class="card">
 
-        <h3>{{ item["name"] }}</h3>
+            <h3>{{ item["name"] }}</h3>
 
-        <p>Description: {{ item["description"] }}</p>
+            <p><strong>Description:</strong> {{ item["description"] }}</p>
 
-        <p>Location: {{ item["location"] }}</p>
+            <p><strong>Location:</strong> {{ item["location"] }}</p>
 
-        <p>Contact: {{ item["contact"] }}</p>
+            <p><strong>Contact:</strong> {{ item["contact"] }}</p>
 
-        <p>Date Posted: {{ item["date_posted"] }}</p>
+            <p><strong>Date Posted:</strong> {{ item["date_posted"] }}</p>
 
-        <a href="/claim-item/{{ item['id'] }}">
-            Claim Item
-        </a>
+            <a href="/claim-item/{{ item['id'] }}">Claim Item</a>
 
-        <hr>
+        </div>
 
-    </div>
-
-    {% endfor %}
+        {% endfor %}
 
     {% else %}
 
-    <p>No found items available.</p>
+        <p class="empty-message">No found items available.</p>
 
     {% endif %}
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</div>
+
 </body>
 
 </html>

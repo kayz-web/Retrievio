@@ -1,53 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Lost & Found</title>
+    <title>Retrievio | Lost & Found Portal</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-    <h1>Lost & Found Portal</h1>
+<div class="container">
 
-    <p>Welcome to the Lost & Found website.</p>
+    <h1>Retrievio - Lost & Found Portal</h1>
 
-    <hr>
+    <p style="text-align:center; margin-bottom:25px;">
+        Welcome! Report lost or found items and help others recover their belongings.
+    </p>
 
-    <a href="/report-lost">Report Lost Item</a>
-    <br><br>
-
-    <a href="/report-found">Report Found Item</a>
-    <br><br>
-
-    <a href="/lost-items">View Lost Items</a>
-    <br><br>
-
-    <a href="/found-items">View Found Items</a>
+    <div class="navbar">
+        <a href="/report-lost">Report Lost Item</a>
+        <a href="/report-found">Report Found Item</a>
+        <a href="/lost-items">View Lost Items</a>
+        <a href="/found-items">View Found Items</a>
+    </div>
 
     <hr>
 
-    <h2>Active Items</h2>
+    <h2>Recently Reported Items</h2>
 
-    {% for item in items %}
+    {% if items %}
 
-        <div>
+        {% for item in items %}
+
+        <div class="card">
 
             <h3>{{ item["name"] }}</h3>
 
-            <p>Type: {{ item["type"] }}</p>
+            <p><strong>Type:</strong> {{ item["type"] }}</p>
 
-            <p>Description: {{ item["description"] }}</p>
+            <p><strong>Description:</strong> {{ item["description"] }}</p>
 
-            <p>Location: {{ item["location"] }}</p>
+            <p><strong>Location:</strong> {{ item["location"] }}</p>
 
-            <p>Contact: {{ item["contact"] }}</p>
+            <p><strong>Contact:</strong> {{ item["contact"] }}</p>
 
-            <p>Date Posted: {{ item["date_posted"] }}</p>
-
-            <hr>
+            <p><strong>Date Posted:</strong> {{ item["date_posted"] }}</p>
 
         </div>
 
-    {% endfor %}
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        {% endfor %}
+
+    {% else %}
+
+        <p class="empty-message">No active items available.</p>
+
+    {% endif %}
+
+</div>
+
 </body>
+
 </html>

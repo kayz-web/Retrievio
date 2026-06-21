@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Report Found Item</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
+
+<div class="container">
 
     <h1>Report Found Item</h1>
 
+    <a href="/">← Back to Home</a>
+
+    <hr>
+
     <form method="POST">
 
-        <label>Name:</label>
-        <br>
-        <input type="text" name="name">
-        <br><br>
+        <label for="name">Item Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter item name"
+            required>
 
-        <label>Description:</label>
-        <br>
-        <textarea name="description"></textarea>
-        <br><br>
+        <label for="description">Description</label>
+        <textarea
+            id="description"
+            name="description"
+            placeholder="Describe the found item"
+            required></textarea>
 
-        <label>Location:</label>
-        <br>
-        <input type="text" name="location">
-        <br><br>
+        <label for="location">Location</label>
+        <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Where was it found?"
+            required>
 
-        <label>Contact:</label>
-        <br>
-        <input type="text" name="contact">
-        <br><br>
+        <label for="contact">Contact Number</label>
+        <input
+            type="text"
+            id="contact"
+            name="contact"
+            placeholder="Enter your 10-digit phone number"
+            maxlength="10"
+            required>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Submit Report</button>
 
     </form>
+
+</div>
+
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
+
 </html>
